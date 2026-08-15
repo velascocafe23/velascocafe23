@@ -1,6 +1,6 @@
 # Hi, I'm Sebastián Velasco Ardila 👋
 
-**Data Engineer** | Economist turned data professional | Medellín, Colombia 🇨🇴
+**Data Engineer** | Economist turned data professional | Medellín, Colombia
 
 I build production data platforms on the Lakehouse paradigm — ingestion pipelines, medallion architectures, and data governance for organizations that need their data to be trustworthy, not just available.
 
@@ -29,7 +29,7 @@ I build production data platforms on the Lakehouse paradigm — ingestion pipeli
 ### 🎓 Education & certifications
 
 - **M.Sc. Data Science** — Universidad Pontificia Bolivariana *(in progress)*
-- **MBA** — Universidad Pontificia Bolivariana *(in progress)*
+- **Bussines Intelligence MSC** — Universidad Pontificia Bolivariana *(in progress)*
 - **B.A. Economics**
 - Microsoft Certified: **DP-203** Data Engineering on Azure · **DP-900** Azure Data Fundamentals · **AZ-900** Azure Fundamentals
 
