@@ -49,7 +49,7 @@ Data contracts, Unity Catalog governance, and graph-based data lineage.
 ### 📫 Get in touch
 
 - LinkedIn: https://www.linkedin.com/in/sebastian-velasco/
-- Email: velascosebastian@hotmail.com
+
 
 ---
 
