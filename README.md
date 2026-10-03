@@ -10,26 +10,48 @@ Eight years in data, the last five deep in the Azure and Microsoft ecosystem, wi
 
 ### 🔭 What I'm working on
 
-- **Bronze-layer ingestion pipelines** for a U.S. public-data nonprofit: Databricks, PySpark, Apache Airflow (Astronomer) and Azure, moving raw federal datasets (elections, labor statistics, budget) into a governed Lakehouse.
+- **Federal data ingestion platform on Databricks** for a U.S. public-data nonprofit.
+- **Data quality rules product on Databricks** for a U.S. data-research company, live in production.
 - **FHIR R4 health interoperability platform** on Microsoft Fabric for Colombia's Ministry of Health, where I lead the technical side: Bronze → Silver → Gold medallion architecture, entity resolution, knowledge-graph embeddings, RAG-based metadata enrichment and data-quality observability over clinical records.
-- **QA regression pipelines** for a U.S. data-research company: Airflow DAGs and reusable comparison utilities packaged as Python wheels.
 - **M.Sc. thesis:** a *data contracts* framework with active observability on Databricks Unity Catalog, bringing shift-left governance to Bronze → Silver pipelines (Design Science Research).
 
 **Earlier:** architected an Azure and Microsoft Fabric medallion platform consolidating 67+ source systems.
 
+### 🧱 Databricks in production
+
+**Ingestion platform: raw → Bronze → Silver on Unity Catalog (Azure)**
+
+- Pipelines that land U.S. federal datasets (labor, education, immigration, health, elections, budget) as governed Delta tables, orchestrated with Apache Airflow on Astronomer.
+- **Incremental by design:** watermark-based loads and Delta `MERGE` on natural keys, so every run is idempotent and safe to re-run.
+- **Metadata-driven:** a dynamic DAG factory configured in YAML plus generic Bronze-to-Silver notebooks driven by dataset-mapping files, instead of one hand-written pipeline per dataset.
+- **Legacy migration:** moved legacy scrapers into the framework, including replacing 34 fragmented DAGs with a single parameterized one.
+- **Cheap freshness checks:** polling sensors run in Airflow and only start Databricks compute when the source has actually published new data.
+- **Refresh validation:** Delta history and time travel for rollback points, plus cross-method validation against an independent source to catch silent failures (a run that reports success while loading wrong data).
+- Currently designing the monitoring and observability dashboards for the platform's data quality framework.
+
+**Data quality product: Spark rules engine and Lakeview dashboard**
+
+- A rules pipeline that runs quality checks over a de-identified master dataset and publishes results to a Lakeview dashboard used by product, data science and engineering.
+- **Rule families:** hard gates, per-source freshness with red/amber/green bands (sources discovered from `information_schema`, not hardcoded), chain integrity and schema-delta detection.
+- **Shipped as code:** Databricks Asset Bundles on Serverless compute, versioned Python wheels, and dev → UAT → prod promotion through GitHub Actions.
+- **Tested:** `pytest` suites for every rule, `ruff` linting, and a QA regression DAG backed by a reusable comparison utility.
+
 ### 🛠️ Tech stack
 
-**Data & Processing**
-`PySpark` `Databricks` `Delta Lake` `Unity Catalog` `Microsoft Fabric` `SQL` `Python` `Pandas` `DuckDB`
+**Databricks & Lakehouse**
+`Databricks` `Unity Catalog` `Delta Lake` `PySpark` `Spark SQL` `Asset Bundles` `Serverless compute` `Lakeview dashboards` `ai_query()` `Microsoft Fabric`
 
 **Orchestration & Cloud**
-`Apache Airflow / Astronomer` `Fabric Pipelines` `Azure Data Factory` `Azure Data Lake` `Event Hubs` `AWS (EMR, Athena, EC2)` `Docker`
+`Apache Airflow / Astronomer` `Fabric Pipelines` `Azure Data Factory` `ADLS Gen2` `Azure Key Vault` `Event Hubs` `AWS (EMR, Athena, EC2)` `Docker`
+
+**Languages & tooling**
+`Python` `SQL` `Pandas` `DuckDB` `pytest` `uv` `ruff` `GitHub Actions` `Git`
 
 **Analytics, ML & AI**
 `Power BI / DAX` `scikit-learn` `XGBoost + SHAP` `Prophet / SARIMA` `PyKEEN` `GraphSAGE` `RAG` `GitHub Copilot`
 
 **Practices**
-`Medallion Architecture` `Data Contracts` `Data Quality & Observability` `FHIR R4` `Metadata-driven pipelines` `Gitflow` `Conventional Commits` `CI/CD`
+`Medallion Architecture` `Data Contracts` `Data Quality & Observability` `Metadata-driven pipelines` `Idempotent incremental loads` `FHIR R4` `CI/CD` `Gitflow` `Conventional Commits`
 
 ### 🎓 Education
 
@@ -60,6 +82,8 @@ Eight years in data, the last five deep in the Azure and Microsoft ecosystem, wi
 | [NYC Taxi on Hive and Athena](https://github.com/velascocafe23/U3-LAB-HIVE-SVA) | Big-data querying lab over NYC mobility data | AWS EMR, Hive, Athena, S3 |
 | [Heart disease prediction](https://github.com/velascocafe23/heart_ds_project) | Predictive modeling on clinical data, run with Gitflow, Conventional Commits and issue-linked branches *(in progress)* | Python, pandas, scikit-learn |
 | [ICFES score prediction](https://github.com/velascocafe23/PrediccionResultadoIcfes) | ML models predicting Colombian standardized test outcomes | Python, scikit-learn |
+
+> Most of my production work lives in private client repositories, so the sections above describe it and the table shows what I can share publicly.
 
 ### 🌱 Currently learning
 
